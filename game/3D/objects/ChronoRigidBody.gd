@@ -54,6 +54,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 func reverse() -> void:
 	if reversed:
 		return
+	GlobalTime.num_rewinding += 1
 	#print("reversing...")
 	reversed = true
 	can_sleep = false
@@ -64,6 +65,7 @@ func reverse() -> void:
 func resume() -> void:
 	if not reversed:
 		return
+	GlobalTime.num_rewinding -= 1
 	#print("resuming...")
 	reversed = false
 	can_sleep = true

@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://ceoan0w7g0hky"]
+[gd_scene load_steps=28 format=3 uid="uid://ceoan0w7g0hky"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_7c5rr"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_7otmy"]
 [ext_resource type="Texture2D" uid="uid://dbsp8adv3igvh" path="res://assets/test_textures/Green.png" id="2_oalxj"]
+[ext_resource type="Texture2D" uid="uid://bl4w06f5v527" path="res://assets/test_textures/Orange.png" id="2_sqhao"]
 [ext_resource type="PackedScene" uid="uid://c1e2d8kcu05qs" path="res://game/3D/objects/chrono_rigid_body.tscn" id="3_kp4ed"]
 [ext_resource type="Texture2D" uid="uid://c7jxl5msii6mx" path="res://assets/test_textures/Red.png" id="3_r1f7j"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="5_8cedi"]
@@ -16,6 +17,16 @@ uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_d62ty"]
 size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l7utp"]
+size = Vector3(10, 1, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wi45b"]
+albedo_texture = ExtResource("2_sqhao")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_dhrlm"]
+size = Vector3(10, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7c5rr"]
 
@@ -57,7 +68,7 @@ sky = SubResource("Sky_enou1")
 [node name="test_3d" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.6260325, 0.4032572, -0.6674332, -7.450582e-09, 0.8559063, 0.517131, 0.7797971, 0.32374072, -0.53582513, -2.7637997, 3.7659168, -4.0482235)
+transform = Transform3D(0.98563576, -0.11956969, 0.11926955, 1.1175871e-08, 0.70621765, 0.7079948, -0.16888496, -0.6978251, 0.6960734, 2.156254, 8.411297, 7.010904)
 
 [node name="ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -69,20 +80,66 @@ shape = SubResource("BoxShape3D_nmh0s")
 material_override = SubResource("StandardMaterial3D_oalxj")
 mesh = SubResource("BoxMesh_d62ty")
 
+[node name="conveyer belt" type="StaticBody3D" parent="."]
+transform = Transform3D(0.83476377, -0.26132715, -0.4846417, 0.29875767, 0.954329, 0, 0.46250764, -0.14479043, 0.87471277, -0.77474403, 0.24523163, 1.4631543)
+constant_linear_velocity = Vector3(4.37, 0, 2.42)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt"]
+shape = SubResource("BoxShape3D_l7utp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wi45b")
+mesh = SubResource("BoxMesh_dhrlm")
+
+[node name="conveyer belt2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.32465804, -0.52300954, 0.7880722, 0.39009947, 0.8330804, 0.39217228, -0.8616374, 0.18010467, 0.47449213, 6.277136, 2.3197844, 1.0781198)
+constant_linear_velocity = Vector3(1.77, 0, -4.65)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt2"]
+shape = SubResource("BoxShape3D_l7utp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt2"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.1201872, 3.7252903e-09, 0)
+material_override = SubResource("StandardMaterial3D_wi45b")
+mesh = SubResource("BoxMesh_dhrlm")
+
+[node name="conveyer belt3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.935498, -0.2087998, 0.28503686, -0.008528724, 0.81982064, 0.57255673, -0.35322875, 0.5331948, -0.76872134, 5.1867614, 4.0139294, -5.690797)
+constant_linear_velocity = Vector3(-4.677, 0, -1.767)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt3"]
+shape = SubResource("BoxShape3D_l7utp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt3"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wi45b")
+mesh = SubResource("BoxMesh_dhrlm")
+
+[node name="conveyer belt4" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.15931232, 0.52543867, -0.8357834, 0.33524418, 0.825082, 0.45480862, 0.9285637, -0.20773484, -0.30759603, -1.2300034, 4.002361, -4.973192)
+constant_linear_velocity = Vector3(-0.808, 0, -4.93)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt4"]
+shape = SubResource("BoxShape3D_l7utp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt4"]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_wi45b")
+mesh = SubResource("BoxMesh_dhrlm")
+
 [node name="TestBlock" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8099034, -0.541094)
+transform = Transform3D(0.87004954, -0.28274658, -0.40381676, 0.30906677, 0.9510404, -1.8626451e-09, 0.38404605, -0.12480636, 0.9148399, 0.056958362, 1.6148214, 1.8381916)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TestBlock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4298927, -1.081749, -0.2016015)
 shape = SubResource("BoxShape3D_7c5rr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="TestBlock"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4298927, -1.081749, -0.2016015)
 material_override = SubResource("StandardMaterial3D_enou1")
 mesh = SubResource("BoxMesh_oalxj")
 
 [node name="ball" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2030382, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35757637, 1.2030382, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ball"]
 shape = SubResource("SphereShape3D_r1f7j")
@@ -93,7 +150,8 @@ mesh = SubResource("SphereMesh_b4p66")
 skeleton = NodePath("../..")
 
 [node name="ChronoRigidBody" parent="." instance=ExtResource("3_kp4ed")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6054288, 2.7702115, -0.8996382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3035083, 6.224345, -0.8391175)
+mass = 10.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody"]
 shape = SubResource("BoxShape3D_sqhao")
@@ -103,7 +161,7 @@ material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("BoxMesh_wi45b")
 
 [node name="ChronoRigidBody2" parent="." instance=ExtResource("3_kp4ed")]
-transform = Transform3D(0.95277286, 0.29016525, 0.089599214, -0.30368388, 0.91035974, 0.2811071, 0, -0.29504105, 0.95548457, -0.20681405, 5.039725, -0.73561394)
+transform = Transform3D(0.95277286, 0.29016525, 0.089599214, -0.30368388, 0.91035974, 0.2811071, 0, -0.29504105, 0.95548457, 5.9801035, 3.8350224, 1.6319076)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody2"]
 shape = SubResource("SphereShape3D_8cedi")
@@ -113,7 +171,7 @@ material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("SphereMesh_sqhao")
 
 [node name="ChronoRigidBody3" parent="." instance=ExtResource("3_kp4ed")]
-transform = Transform3D(0.71633774, 0.46227658, 0.5226479, -0.5562688, -0.07382563, 0.82771647, 0.42121884, -0.8836573, 0.20426615, 0.8097842, 4.5625677, -0.39532095)
+transform = Transform3D(0.71633774, 0.46227658, 0.5226479, -0.5562688, -0.07382563, 0.82771647, 0.42121884, -0.8836573, 0.20426615, 0.82885265, 6.2978888, 1.823868)
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody3"]
 shape = SubResource("BoxShape3D_sqhao")
