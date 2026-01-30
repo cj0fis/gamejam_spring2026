@@ -1,7 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceoan0w7g0hky"]
+[gd_scene load_steps=17 format=3 uid="uid://ceoan0w7g0hky"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_7c5rr"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_7otmy"]
+[ext_resource type="Texture2D" uid="uid://dbsp8adv3igvh" path="res://assets/test_textures/Green.png" id="2_oalxj"]
+[ext_resource type="Texture2D" uid="uid://c7jxl5msii6mx" path="res://assets/test_textures/Red.png" id="3_r1f7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nmh0s"]
 size = Vector3(50, 1, 50)
@@ -15,15 +17,17 @@ size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7c5rr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7otmy"]
-albedo_color = Color(0.18320239, 0.4141876, 1, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enou1"]
+albedo_texture = ExtResource("2_oalxj")
+uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_oalxj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_r1f7j"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enou1"]
-albedo_color = Color(1, 0.23488626, 0.17882144, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4p66"]
+albedo_texture = ExtResource("3_r1f7j")
+uv1_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_b4p66"]
 
@@ -59,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8099034, -0.541094)
 shape = SubResource("BoxShape3D_7c5rr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="block"]
-material_override = SubResource("StandardMaterial3D_7otmy")
+material_override = SubResource("StandardMaterial3D_enou1")
 mesh = SubResource("BoxMesh_oalxj")
 
 [node name="ball" type="RigidBody3D" parent="."]
@@ -69,7 +73,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2030382, 0)
 shape = SubResource("SphereShape3D_r1f7j")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ball"]
-material_override = SubResource("StandardMaterial3D_enou1")
+material_override = SubResource("StandardMaterial3D_b4p66")
 mesh = SubResource("SphereMesh_b4p66")
 skeleton = NodePath("../..")
 

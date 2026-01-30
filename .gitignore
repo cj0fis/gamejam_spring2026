@@ -3,6 +3,7 @@
 .nomedia
 /android/
 .import/
+
 export.cfg
 export_credentials.cfg
 *.tmp

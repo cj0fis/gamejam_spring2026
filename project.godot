@@ -24,5 +24,6 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://game/3D/": "red",
-"res://game/UI/": "green"
+"res://game/UI/": "green",
+"res://game/scripts/": "purple"
 }
