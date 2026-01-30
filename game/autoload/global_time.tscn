@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tgai8bm4uqtp"]
+
+[ext_resource type="Script" uid="uid://bqse1lu450fbu" path="res://game/autoload/global_time.gd" id="1_q0ci7"]
+
+[node name="GlobalTime" type="Node"]
+script = ExtResource("1_q0ci7")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1e2d8kcu05qs"]
+
+[ext_resource type="Script" uid="uid://cevgc3hv1ndur" path="res://game/3D/objects/ChronoRigidBody.gd" id="1_wnh0r"]
+[ext_resource type="Script" uid="uid://dinjim2jgtk1d" path="res://game/scripts/PhysicsRecorder.gd" id="3_mbqjw"]
+
+[node name="ChronoRigidBody" type="RigidBody3D"]
+freeze_mode = 1
+script = ExtResource("1_wnh0r")
+
+[node name="PhysicsRecorder" type="Node" parent="."]
+script = ExtResource("3_mbqjw")
+metadata/_custom_type_script = "uid://dinjim2jgtk1d"
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+no_depth_test = true

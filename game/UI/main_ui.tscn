@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://gnepenphw3ta"]
+[gd_scene load_steps=7 format=3 uid="uid://gnepenphw3ta"]
 
-[ext_resource type="PackedScene" uid="uid://ceoan0w7g0hky" path="res://game/3D/test_3d.tscn" id="1_r06bo"]
+[ext_resource type="PackedScene" uid="uid://ceoan0w7g0hky" path="res://game/3D/scenes/test_3d.tscn" id="1_r06bo"]
+[ext_resource type="Script" uid="uid://c6mxi0iwabi37" path="res://game/UI/main_ui.gd" id="1_u2qub"]
+[ext_resource type="Shader" uid="uid://caqo6ylcy7mnl" path="res://assets/shaders/vhs.gdshader" id="2_10x3h"]
+[ext_resource type="FontFile" uid="uid://ct8ojgbtiwfok" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_u2qub"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_td82l"]
 content_margin_left = 0.0
@@ -15,6 +18,30 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yh73i"]
+shader = ExtResource("2_10x3h")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.06000000285
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
 [node name="MainUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -22,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u2qub")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 texture_filter = 1
@@ -40,7 +68,7 @@ render_target_update_mode = 4
 
 [node name="test_3d" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_r06bo")]
 
-[node name="Panel" type="Panel" parent="."]
+[node name="effect panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,11 +78,23 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_td82l")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="VHS effect" type="ColorRect" parent="effect panel"]
+visible = false
+material = SubResource("ShaderMaterial_yh73i")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Rewind text" type="RichTextLabel" parent="effect panel/VHS effect"]
 layout_mode = 0
-offset_left = 784.0
-offset_top = 473.0
-offset_right = 1172.0
-offset_bottom = 572.0
-theme_override_font_sizes/font_size = 72
-text = "hello world"
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 1888.0
+offset_bottom = 1048.0
+theme_override_fonts/normal_font = ExtResource("3_u2qub")
+theme_override_font_sizes/normal_font_size = 72
+text = "Rewind <<<"

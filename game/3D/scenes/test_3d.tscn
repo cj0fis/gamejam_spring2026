@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ceoan0w7g0hky"]
+[gd_scene load_steps=24 format=3 uid="uid://ceoan0w7g0hky"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_7c5rr"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_7otmy"]
 [ext_resource type="Texture2D" uid="uid://dbsp8adv3igvh" path="res://assets/test_textures/Green.png" id="2_oalxj"]
+[ext_resource type="PackedScene" uid="uid://c1e2d8kcu05qs" path="res://game/3D/objects/chrono_rigid_body.tscn" id="3_kp4ed"]
 [ext_resource type="Texture2D" uid="uid://c7jxl5msii6mx" path="res://assets/test_textures/Red.png" id="3_r1f7j"]
+[ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="5_8cedi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nmh0s"]
 size = Vector3(50, 1, 50)
@@ -27,9 +29,20 @@ uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b4p66"]
 albedo_texture = ExtResource("3_r1f7j")
-uv1_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_b4p66"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqhao"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7utp"]
+albedo_texture = ExtResource("5_8cedi")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wi45b"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8cedi"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sqhao"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r1f7j"]
 panorama = ExtResource("2_7otmy")
@@ -56,13 +69,15 @@ shape = SubResource("BoxShape3D_nmh0s")
 material_override = SubResource("StandardMaterial3D_oalxj")
 mesh = SubResource("BoxMesh_d62ty")
 
-[node name="block" type="RigidBody3D" parent="."]
+[node name="TestBlock" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8099034, -0.541094)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="block"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBlock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4298927, -1.081749, -0.2016015)
 shape = SubResource("BoxShape3D_7c5rr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="block"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBlock"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4298927, -1.081749, -0.2016015)
 material_override = SubResource("StandardMaterial3D_enou1")
 mesh = SubResource("BoxMesh_oalxj")
 
@@ -76,6 +91,36 @@ shape = SubResource("SphereShape3D_r1f7j")
 material_override = SubResource("StandardMaterial3D_b4p66")
 mesh = SubResource("SphereMesh_b4p66")
 skeleton = NodePath("../..")
+
+[node name="ChronoRigidBody" parent="." instance=ExtResource("3_kp4ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6054288, 2.7702115, -0.8996382)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody"]
+shape = SubResource("BoxShape3D_sqhao")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody"]
+material_override = SubResource("StandardMaterial3D_l7utp")
+mesh = SubResource("BoxMesh_wi45b")
+
+[node name="ChronoRigidBody2" parent="." instance=ExtResource("3_kp4ed")]
+transform = Transform3D(0.95277286, 0.29016525, 0.089599214, -0.30368388, 0.91035974, 0.2811071, 0, -0.29504105, 0.95548457, -0.20681405, 5.039725, -0.73561394)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody2"]
+shape = SubResource("SphereShape3D_8cedi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody2"]
+material_override = SubResource("StandardMaterial3D_l7utp")
+mesh = SubResource("SphereMesh_sqhao")
+
+[node name="ChronoRigidBody3" parent="." instance=ExtResource("3_kp4ed")]
+transform = Transform3D(0.71633774, 0.46227658, 0.5226479, -0.5562688, -0.07382563, 0.82771647, 0.42121884, -0.8836573, 0.20426615, 0.8097842, 4.5625677, -0.39532095)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody3"]
+shape = SubResource("BoxShape3D_sqhao")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody3"]
+material_override = SubResource("StandardMaterial3D_l7utp")
+mesh = SubResource("BoxMesh_wi45b")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b4p66")
