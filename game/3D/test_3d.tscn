@@ -1,0 +1,81 @@
+[gd_scene load_steps=15 format=3 uid="uid://ceoan0w7g0hky"]
+
+[ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_7c5rr"]
+[ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_7otmy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nmh0s"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oalxj"]
+albedo_texture = ExtResource("1_7c5rr")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_d62ty"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7c5rr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7otmy"]
+albedo_color = Color(0.18320239, 0.4141876, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_oalxj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r1f7j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enou1"]
+albedo_color = Color(1, 0.23488626, 0.17882144, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_b4p66"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_r1f7j"]
+panorama = ExtResource("2_7otmy")
+
+[sub_resource type="Sky" id="Sky_enou1"]
+sky_material = SubResource("PanoramaSkyMaterial_r1f7j")
+
+[sub_resource type="Environment" id="Environment_b4p66"]
+background_mode = 2
+sky = SubResource("Sky_enou1")
+
+[node name="test_3d" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.6260325, 0.4032572, -0.6674332, -7.450582e-09, 0.8559063, 0.517131, 0.7797971, 0.32374072, -0.53582513, -2.7637997, 3.7659168, -4.0482235)
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("BoxShape3D_nmh0s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+material_override = SubResource("StandardMaterial3D_oalxj")
+mesh = SubResource("BoxMesh_d62ty")
+
+[node name="block" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8099034, -0.541094)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block"]
+shape = SubResource("BoxShape3D_7c5rr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="block"]
+material_override = SubResource("StandardMaterial3D_7otmy")
+mesh = SubResource("BoxMesh_oalxj")
+
+[node name="ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2030382, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ball"]
+shape = SubResource("SphereShape3D_r1f7j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ball"]
+material_override = SubResource("StandardMaterial3D_enou1")
+mesh = SubResource("SphereMesh_b4p66")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b4p66")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.16921045, 0.7245268, 0.6681532, -0.74434364, -0.35040754, 0.5684779, 0.6460034, -0.59352803, 0.48000428, 2.1181402, 5.265997, -2.8889017)
+shadow_enabled = true
