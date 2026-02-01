@@ -18,6 +18,7 @@ var delta_time: float = 0.0			## used to pass delta data from _physics_process t
 func _ready() -> void:
 	GlobalTime.rewind_all.connect(reverse)
 	GlobalTime.resume_all.connect(resume)
+	add_to_group("chrono")
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -48,9 +49,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		if not success:
 			resume()
 			return
-		
 
-	
+
 func reverse() -> void:
 	if reversed:
 		return

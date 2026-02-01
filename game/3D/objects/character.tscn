@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfkp01g3da80l"]
+
+[ext_resource type="Script" uid="uid://va0pv67qidat" path="res://game/3D/objects/Character.gd" id="1_o8xx4"]
+[ext_resource type="Script" uid="uid://dor6syxv5ytcw" path="res://game/3D/objects/character_controller.gd" id="2_23gh3"]
+[ext_resource type="Texture2D" uid="uid://c7jxl5msii6mx" path="res://assets/test_textures/Red.png" id="2_rly0g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rly0g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cs6oy"]
+albedo_texture = ExtResource("2_rly0g")
+uv1_triplanar = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cs6oy"]
+
+[node name="Character" type="CharacterBody3D"]
+script = ExtResource("1_o8xx4")
+gravity = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_rly0g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_cs6oy")
+mesh = SubResource("CapsuleMesh_cs6oy")
+
+[node name="CharacterController" type="Node" parent="." node_paths=PackedStringArray("character", "pivot", "camera")]
+script = ExtResource("2_23gh3")
+character = NodePath("..")
+pivot = NodePath("../CamPivot")
+camera = NodePath("../CamPivot/Camera3D")
+
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5876648, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot"]
