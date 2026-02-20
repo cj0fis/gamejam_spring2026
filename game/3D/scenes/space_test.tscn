@@ -1,0 +1,118 @@
+[gd_scene load_steps=18 format=3 uid="uid://0q8ieptyrss2"]
+
+[ext_resource type="Texture2D" uid="uid://d0jw1t217pejp" path="res://assets/skyboxes/HDR_refined_galactic_plane_and_nebulae_1.hdr" id="1_2uslq"]
+[ext_resource type="Shader" uid="uid://sdcnj7cphqbm" path="res://assets/shaders/black_hole.gdshader" id="2_w2sjw"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w2sjw"]
+panorama = ExtResource("1_2uslq")
+energy_multiplier = 3.0
+
+[sub_resource type="Sky" id="Sky_kjmlk"]
+sky_material = SubResource("PanoramaSkyMaterial_w2sjw")
+
+[sub_resource type="Environment" id="Environment_uhm0l"]
+background_mode = 2
+sky = SubResource("Sky_kjmlk")
+sky_rotation = Vector3(0, 0, -0.040142573)
+adjustment_enabled = true
+adjustment_saturation = 1.35
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7f42"]
+render_priority = 0
+shader = ExtResource("2_w2sjw")
+shader_parameter/scale = 100.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_b2s83"]
+
+[sub_resource type="Gradient" id="Gradient_2uslq"]
+offsets = PackedFloat32Array(0.0023310024, 0.5, 1)
+colors = PackedColorArray(0.7650533, 0.3719882, 0.08478684, 1, 0, 0, 0, 0, 0.76862746, 0.4509804, 0.43137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w2sjw"]
+gradient = SubResource("Gradient_2uslq")
+width = 1
+height = 512
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2s83"]
+transparency = 3
+alpha_hash_scale = 0.01
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_w2sjw")
+refraction_texture_channel = 2
+texture_filter = 2
+
+[sub_resource type="TorusMesh" id="TorusMesh_inbwr"]
+inner_radius = 0.261
+outer_radius = 0.637
+
+[sub_resource type="Gradient" id="Gradient_12df1"]
+offsets = PackedFloat32Array(0.6829837, 0.86013985, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjmlk"]
+gradient = SubResource("Gradient_12df1")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.74643874, 0.19373219)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uhm0l"]
+transparency = 3
+alpha_hash_scale = 0.2
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.9607843, 0.5058824, 0.34117648, 1)
+albedo_texture = SubResource("GradientTexture2D_kjmlk")
+emission_enabled = true
+emission = Color(0.9709771, 0.55433065, 0.36154515, 1)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+refraction_scale = 0.36
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v7f42"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2uslq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_inbwr"]
+
+[node name="space_test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uhm0l")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.13702968, -0.055087797, 0.989034, -4.656613e-10, 0.9984524, 0.055612393, -0.99056697, 0.007620548, -0.13681762, -4.82898, -0.32095712, 7.1440315)
+visible = false
+
+[node name="black hole" type="MeshInstance3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 95.014114, -25.449741, 175.68001)
+material_override = SubResource("ShaderMaterial_v7f42")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_b2s83")
+
+[node name="accretion disk 1" type="MeshInstance3D" parent="black hole"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_b2s83")
+mesh = SubResource("TorusMesh_inbwr")
+
+[node name="accretion disk 2" type="MeshInstance3D" parent="black hole"]
+visible = false
+material_override = SubResource("StandardMaterial3D_uhm0l")
+mesh = SubResource("PlaneMesh_v7f42")
+
+[node name="Area3D" type="Area3D" parent="black hole"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="black hole/Area3D"]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+shape = SubResource("SphereShape3D_2uslq")
+
+[node name="world stuff" type="Node3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="world stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1421494, 0, -1.6976584)
+mesh = SubResource("BoxMesh_inbwr")

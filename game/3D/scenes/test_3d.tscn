@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ceoan0w7g0hky"]
+[gd_scene load_steps=58 format=3 uid="uid://ceoan0w7g0hky"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_7c5rr"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_7otmy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4w06f5v527" path="res://assets/test_textures/Orange.png" id="2_sqhao"]
 [ext_resource type="PackedScene" uid="uid://c1e2d8kcu05qs" path="res://game/3D/objects/chrono_rigid_body.tscn" id="3_kp4ed"]
 [ext_resource type="Texture2D" uid="uid://c7jxl5msii6mx" path="res://assets/test_textures/Red.png" id="3_r1f7j"]
+[ext_resource type="Shader" uid="uid://sdcnj7cphqbm" path="res://assets/shaders/black_hole.gdshader" id="4_dhrlm"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="5_8cedi"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="9_wi45b"]
 
@@ -66,141 +67,303 @@ sky_material = SubResource("PanoramaSkyMaterial_r1f7j")
 [sub_resource type="Environment" id="Environment_b4p66"]
 background_mode = 2
 sky = SubResource("Sky_enou1")
+sky_rotation = Vector3(0, 1.0000737, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ml0th"]
+render_priority = 0
+shader = ExtResource("4_dhrlm")
+shader_parameter/scale = 1000.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_mg7cl"]
+flip_faces = true
+
+[sub_resource type="Gradient" id="Gradient_6advh"]
+offsets = PackedFloat32Array(0.0023310024, 0.5, 1)
+colors = PackedColorArray(0.7650533, 0.3719882, 0.08478684, 1, 0, 0, 0, 0, 0.76862746, 0.4509804, 0.43137255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w2sjw"]
+gradient = SubResource("Gradient_6advh")
+width = 1
+height = 512
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tbyq"]
+transparency = 3
+alpha_hash_scale = 0.01
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_w2sjw")
+refraction_texture_channel = 2
+texture_filter = 2
+
+[sub_resource type="TorusMesh" id="TorusMesh_vhuv4"]
+inner_radius = 0.261
+outer_radius = 0.637
+
+[sub_resource type="Gradient" id="Gradient_07cy7"]
+offsets = PackedFloat32Array(0.6829837, 0.86013985, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kjmlk"]
+gradient = SubResource("Gradient_07cy7")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.74643874, 0.19373219)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ypbl"]
+transparency = 3
+alpha_hash_scale = 0.2
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.9607843, 0.5058824, 0.34117648, 1)
+albedo_texture = SubResource("GradientTexture2D_kjmlk")
+emission_enabled = true
+emission = Color(0.9709771, 0.55433065, 0.36154515, 1)
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 1.0
+refraction_scale = 0.36
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dro6v"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ykw4b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhrlm"]
+render_priority = 0
+shader = ExtResource("4_dhrlm")
+shader_parameter/scale = 10.0
+
+[sub_resource type="Curve" id="Curve_ml0th"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.0051107), 0.0, 0.0, 0, 0, Vector2(1, 0.9982964), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mg7cl"]
+curve = SubResource("Curve_ml0th")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6advh"]
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
+spread = 180.0
+orbit_velocity_curve = SubResource("CurveTexture_mg7cl")
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhuv4"]
+cull_mode = 2
+billboard_keep_scale = true
+use_particle_trails = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_07cy7"]
+material = SubResource("StandardMaterial3D_vhuv4")
+shape = 0
+size = 0.1
+
+[sub_resource type="Curve" id="Curve_8ypbl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dro6v"]
+curve = SubResource("Curve_8ypbl")
+
+[sub_resource type="Curve" id="Curve_ykw4b"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ft18j"]
+curve = SubResource("Curve_ykw4b")
+
+[sub_resource type="Curve" id="Curve_223lm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.79863477, 0.48722315), -1.4974434, -1.4974434, 0, 0, Vector2(0.9988623, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_wccl2"]
+curve = SubResource("Curve_223lm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x8ty6"]
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 1.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = 1.9999977
+tangential_accel_max = 3.9999976
+scale_curve = SubResource("CurveTexture_wccl2")
+color = Color(0, 0, 1, 1)
+alpha_curve = SubResource("CurveTexture_dro6v")
+emission_curve = SubResource("CurveTexture_ft18j")
+hue_variation_min = 0.009999977
+hue_variation_max = 0.009999977
+
+[sub_resource type="Curve" id="Curve_e1iss"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.021574974, 0.4969614), 4.364245, 4.364245, 0, 0, Vector2(0.1132686, 0.7839514), 0.1784598, 0.1784598, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nr220"]
+transparency = 2
+alpha_scissor_threshold = 0.0
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0, 0, 1, 1)
+emission_energy_multiplier = 3.44
+point_size = 6.8
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_v2bmj"]
+material = SubResource("StandardMaterial3D_nr220")
+radius = 0.01
+section_length = 0.1
+section_rings = 20
+curve = SubResource("Curve_e1iss")
 
 [node name="test_3d" type="Node3D"]
 
-[node name="ground" type="StaticBody3D" parent="."]
+[node name="level stuff" type="Node3D" parent="."]
+
+[node name="ground" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/ground"]
 shape = SubResource("BoxShape3D_nmh0s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/ground"]
 material_override = SubResource("StandardMaterial3D_oalxj")
 mesh = SubResource("BoxMesh_d62ty")
 
-[node name="conveyer belt" type="StaticBody3D" parent="."]
+[node name="conveyer belt" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(0.83476377, -0.26132715, -0.4846417, 0.29875767, 0.954329, 0, 0.46250764, -0.14479043, 0.87471277, -0.48720515, 1.4455862, 2.2078986)
 script = ExtResource("2_l7utp")
 relative_direction = Vector3(1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/conveyer belt"]
 shape = SubResource("BoxShape3D_l7utp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/conveyer belt"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wi45b")
 mesh = SubResource("BoxMesh_dhrlm")
 
-[node name="conveyer belt2" type="StaticBody3D" parent="."]
+[node name="conveyer belt2" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(0.32465804, -0.52300954, 0.7880722, 0.39009947, 0.8330804, 0.39217228, -0.8616374, 0.18010467, 0.47449213, 7.3633623, 2.8603287, 1.7321284)
 script = ExtResource("2_l7utp")
 relative_direction = Vector3(1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/conveyer belt2"]
 transform = Transform3D(1, 1.6391277e-07, 2.9802322e-08, -1.4901161e-08, 0.9999995, 7.450581e-09, 2.9802322e-08, -6.7055225e-08, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_l7utp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/conveyer belt2"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0.1201872, 3.7252903e-09, 0)
 material_override = SubResource("StandardMaterial3D_wi45b")
 mesh = SubResource("BoxMesh_dhrlm")
 
-[node name="conveyer belt3" type="StaticBody3D" parent="."]
+[node name="conveyer belt3" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(-0.935498, -0.2087998, 0.28503686, -0.008528724, 0.81982064, 0.57255673, -0.35322875, 0.5331948, -0.76872134, 5.1867614, 4.0139294, -5.690797)
 script = ExtResource("2_l7utp")
 relative_direction = Vector3(1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/conveyer belt3"]
 shape = SubResource("BoxShape3D_l7utp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/conveyer belt3"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wi45b")
 mesh = SubResource("BoxMesh_dhrlm")
 
-[node name="conveyer belt4" type="StaticBody3D" parent="."]
+[node name="conveyer belt4" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(-0.29439676, 0.46346164, -0.8357834, 0.10167779, 0.88476586, 0.4548086, 0.95025885, 0.048913687, -0.30759603, -1.3594302, 4.4805007, -5.0644507)
 script = ExtResource("2_l7utp")
 relative_direction = Vector3(1, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="conveyer belt4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/conveyer belt4"]
 shape = SubResource("BoxShape3D_l7utp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="conveyer belt4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/conveyer belt4"]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wi45b")
 mesh = SubResource("BoxMesh_dhrlm")
 
-[node name="TestBlock" type="RigidBody3D" parent="."]
+[node name="bodies" type="Node3D" parent="."]
+
+[node name="TestBlock" type="RigidBody3D" parent="bodies"]
 transform = Transform3D(0.87004954, -0.28274658, -0.40381676, 0.30906677, 0.9510404, -1.8626451e-09, 0.38404605, -0.12480636, 0.9148399, -0.2471676, 2.637773, 1.7039483)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestBlock"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bodies/TestBlock"]
 shape = SubResource("BoxShape3D_7c5rr")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestBlock"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bodies/TestBlock"]
 material_override = SubResource("StandardMaterial3D_enou1")
 mesh = SubResource("BoxMesh_oalxj")
 
-[node name="ball" type="RigidBody3D" parent="."]
+[node name="ball" type="RigidBody3D" parent="bodies"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35757637, 1.2030382, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ball"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bodies/ball"]
 shape = SubResource("SphereShape3D_r1f7j")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ball"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bodies/ball"]
 material_override = SubResource("StandardMaterial3D_b4p66")
 mesh = SubResource("SphereMesh_b4p66")
-skeleton = NodePath("../..")
+skeleton = NodePath("../../..")
 
-[node name="ChronoRigidBody" parent="." instance=ExtResource("3_kp4ed")]
+[node name="ChronoRigidBody" parent="bodies" instance=ExtResource("3_kp4ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3035083, 6.224345, -0.8391175)
 mass = 10.0
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bodies/ChronoRigidBody"]
 shape = SubResource("BoxShape3D_sqhao")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bodies/ChronoRigidBody"]
 material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("BoxMesh_wi45b")
 
-[node name="ChronoRigidBody2" parent="." instance=ExtResource("3_kp4ed")]
+[node name="ChronoRigidBody2" parent="bodies" instance=ExtResource("3_kp4ed")]
 transform = Transform3D(0.95277286, 0.29016525, 0.089599214, -0.30368388, 0.91035974, 0.2811071, 0, -0.29504105, 0.95548457, 5.9801035, 3.8350224, 1.6319076)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bodies/ChronoRigidBody2"]
 shape = SubResource("SphereShape3D_8cedi")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody2"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bodies/ChronoRigidBody2"]
 material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("SphereMesh_sqhao")
 
-[node name="ChronoRigidBody3" parent="." instance=ExtResource("3_kp4ed")]
+[node name="ChronoRigidBody3" parent="bodies" instance=ExtResource("3_kp4ed")]
 transform = Transform3D(0.71633774, 0.46227658, 0.5226479, -0.5562688, -0.07382563, 0.82771647, 0.42121884, -0.8836573, 0.20426615, 0.82885265, 6.2978888, 1.823868)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody3"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bodies/ChronoRigidBody3"]
 shape = SubResource("BoxShape3D_sqhao")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody3"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bodies/ChronoRigidBody3"]
 material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("BoxMesh_wi45b")
 
-[node name="ChronoRigidBody4" parent="." instance=ExtResource("3_kp4ed")]
+[node name="ChronoRigidBody4" parent="bodies" instance=ExtResource("3_kp4ed")]
 transform = Transform3D(0.84954506, 0.42754415, -0.30899706, 0.31309772, 0.06275204, 0.9476457, 0.4245505, -0.9018139, -0.0805522, -1.5631511, 2.2110786, 1.0846757)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody4"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bodies/ChronoRigidBody4"]
 shape = SubResource("BoxShape3D_sqhao")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody4"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bodies/ChronoRigidBody4"]
 material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("BoxMesh_wi45b")
 
-[node name="ChronoRigidBody5" parent="." instance=ExtResource("3_kp4ed")]
+[node name="ChronoRigidBody5" parent="bodies" instance=ExtResource("3_kp4ed")]
 transform = Transform3D(0.84954506, 0.44977367, -0.27563894, 0.31309772, -0.009389486, 0.94967467, 0.4245505, -0.8930933, -0.14879969, 0.9005388, 2.833651, 2.2235272)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="ChronoRigidBody5"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bodies/ChronoRigidBody5"]
 shape = SubResource("BoxShape3D_sqhao")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="ChronoRigidBody5"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="bodies/ChronoRigidBody5"]
 material_override = SubResource("StandardMaterial3D_l7utp")
 mesh = SubResource("BoxMesh_wi45b")
 
@@ -208,8 +371,77 @@ mesh = SubResource("BoxMesh_wi45b")
 environment = SubResource("Environment_b4p66")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.16921045, 0.7245268, 0.6681532, -0.74434364, -0.35040754, 0.5684779, 0.6460034, -0.59352803, 0.48000428, 2.1181402, 5.265997, -2.8889017)
+transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157536, 0.6370594, 0.6169419, -0.20852631, 0.7588805, -2.025084, 9.244978, 4.147494)
 shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("9_wi45b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09, 0, 8.407)
+air_control = 1.0
+
+[node name="black hole" type="MeshInstance3D" parent="."]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, -20.852982, 38.197693, 1153.165)
+visible = false
+material_override = SubResource("ShaderMaterial_ml0th")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_mg7cl")
+skeleton = NodePath("../level stuff")
+
+[node name="accretion disk 1" type="MeshInstance3D" parent="black hole"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_6tbyq")
+mesh = SubResource("TorusMesh_vhuv4")
+
+[node name="accretion disk 2" type="MeshInstance3D" parent="black hole"]
+visible = false
+material_override = SubResource("StandardMaterial3D_8ypbl")
+mesh = SubResource("PlaneMesh_dro6v")
+
+[node name="Area3D" type="Area3D" parent="black hole"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="black hole/Area3D"]
+transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
+shape = SubResource("SphereShape3D_ykw4b")
+
+[node name="black hole2" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -47.45405, 6.480899, 2.170517)
+material_override = SubResource("ShaderMaterial_dhrlm")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_mg7cl")
+skeleton = NodePath("../level stuff")
+
+[node name="accretion disk 1" type="MeshInstance3D" parent="black hole2"]
+transform = Transform3D(1, 0, 0, 0, 0.01, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_6tbyq")
+mesh = SubResource("TorusMesh_vhuv4")
+
+[node name="accretion disk 2" type="MeshInstance3D" parent="black hole2"]
+visible = false
+material_override = SubResource("StandardMaterial3D_8ypbl")
+mesh = SubResource("PlaneMesh_dro6v")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="black hole2"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+amount = 100
+lifetime = 5.0
+interpolate = false
+trail_enabled = true
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_6advh")
+draw_pass_1 = SubResource("RibbonTrailMesh_07cy7")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, -17.517897, 10.367384, -5.5668335)
+amount = 100
+lifetime = 6.0
+trail_enabled = true
+trail_lifetime = 1.0
+process_material = SubResource("ParticleProcessMaterial_x8ty6")
+draw_pass_1 = SubResource("TubeTrailMesh_v2bmj")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0)
+strength = 4.05
+attenuation = 0.0005055012
+radius = 1.5
