@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://c80g87ugyt2ku"]
+
+[ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="1_b1re6"]
+[ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_3cixu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nc6pg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b1re6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_b1re6"]
+
+[sub_resource type="Animation" id="Animation_3cixu"]
+resource_name = "MovingCube_Level01"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-55.514973, 4.4200335, 0), Vector3(11.360783, 4.4200335, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tjfmr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-55.514973, 4.4200335, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0s8mq"]
+_data = {
+&"MovingCube_Level01": SubResource("Animation_3cixu"),
+&"RESET": SubResource("Animation_tjfmr")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glyhk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mrub3"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tjfmr"]
+panorama = ExtResource("2_3cixu")
+
+[sub_resource type="Sky" id="Sky_enou1"]
+sky_material = SubResource("PanoramaSkyMaterial_tjfmr")
+
+[sub_resource type="Environment" id="Environment_0s8mq"]
+background_mode = 2
+sky = SubResource("Sky_enou1")
+sky_rotation = Vector3(0, 1.0000737, 0)
+
+[node name="Level01" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 11.022105, 4.330061, 0)
+mesh = SubResource("BoxMesh_nc6pg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 11.022105, 4.330061, 0)
+shape = SubResource("BoxShape3D_b1re6")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -56.875378, 4.330061, 0)
+mesh = SubResource("BoxMesh_nc6pg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(47.768913, 0, 0, 0, 1, 0, 0, 0, 5.570249, -23.742445, 0, 0)
+mesh = SubResource("PlaneMesh_b1re6")
+
+[node name="MovingCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -55.483063, 6.826021, 0)
+mesh = SubResource("BoxMesh_nc6pg")
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -55.514973, 4.4200335, 0)
+disable_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
+libraries = {
+&"": SubResource("AnimationLibrary_0s8mq")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_glyhk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+mesh = SubResource("BoxMesh_mrub3")
+
+[node name="Character" parent="." instance=ExtResource("1_b1re6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.753445, 10.122746, -0.017554998)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0s8mq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157536, 0.6370594, 0.6169419, -0.20852631, 0.7588805, -2.025084, 9.244978, 4.147494)
+shadow_enabled = true
