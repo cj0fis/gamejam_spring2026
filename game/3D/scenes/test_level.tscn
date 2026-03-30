@@ -1,0 +1,178 @@
+[gd_scene load_steps=21 format=3 uid="uid://bk4hnqem1pmow"]
+
+[ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_gpssq"]
+[ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_arass"]
+[ext_resource type="Script" uid="uid://bqjdebhk2idbo" path="res://game/3D/scenes/movingobject.gd" id="2_ksi72"]
+[ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="2_n50sd"]
+[ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="3_j07rq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_arass"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ksi72"]
+albedo_texture = ExtResource("1_gpssq")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_j07rq"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7oam"]
+size = Vector3(2.5, 0.25, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35mwy"]
+albedo_texture = ExtResource("3_j07rq")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_m42xo"]
+size = Vector3(2.5, 0.25, 2.5)
+
+[sub_resource type="Animation" id="Animation_ksi72"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/MovingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 4, 5, -9.3)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level stuff/FallingPlatform")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -5.548)
+
+[sub_resource type="Animation" id="Animation_j07rq"]
+resource_name = "movingplatform"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/MovingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
+
+[sub_resource type="Animation" id="Animation_e7oam"]
+resource_name = "fallingobject"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/FallingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 5, -5.548, 0.8, 1, 0, 0, -5.548)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j07rq"]
+_data = {
+&"RESET": SubResource("Animation_ksi72"),
+&"fallingobject": SubResource("Animation_e7oam"),
+&"movingplatform": SubResource("Animation_j07rq")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ksi72"]
+size = Vector3(5, 7, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e7oam"]
+size = Vector3(5, 7, 5)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ksi72"]
+panorama = ExtResource("2_arass")
+
+[sub_resource type="Sky" id="Sky_enou1"]
+sky_material = SubResource("PanoramaSkyMaterial_ksi72")
+
+[sub_resource type="Environment" id="Environment_j07rq"]
+background_mode = 2
+sky = SubResource("Sky_enou1")
+sky_rotation = Vector3(0, 1.0000737, 0)
+
+[node name="test_level" type="Node3D"]
+
+[node name="level stuff" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41834414, 0, 1.0754826)
+
+[node name="ground" type="StaticBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/ground"]
+shape = SubResource("BoxShape3D_arass")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/ground"]
+material_override = SubResource("StandardMaterial3D_ksi72")
+mesh = SubResource("BoxMesh_j07rq")
+
+[node name="FallingPlatform" type="AnimatableBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.548)
+script = ExtResource("2_ksi72")
+animationName = "fallingobject"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/FallingPlatform"]
+shape = SubResource("BoxShape3D_e7oam")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level stuff/FallingPlatform"]
+material_override = SubResource("StandardMaterial3D_35mwy")
+mesh = SubResource("BoxMesh_m42xo")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/FallingPlatform"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_j07rq")
+}
+autoplay = "fallingceiling"
+
+[node name="higher ground" type="StaticBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -9.385273)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/higher ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4138513, 0)
+shape = SubResource("BoxShape3D_ksi72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/higher ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4164805, 0)
+material_override = SubResource("StandardMaterial3D_ksi72")
+mesh = SubResource("BoxMesh_e7oam")
+
+[node name="higher ground2" type="StaticBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.238949, -0.5, -9.385273)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/higher ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4138513, 0)
+shape = SubResource("BoxShape3D_ksi72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/higher ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4164805, 0)
+material_override = SubResource("StandardMaterial3D_ksi72")
+mesh = SubResource("BoxMesh_e7oam")
+
+[node name="MovingPlatform" type="AnimatableBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, -9.3)
+script = ExtResource("2_ksi72")
+animationName = "movingplatform"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/MovingPlatform"]
+shape = SubResource("BoxShape3D_e7oam")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level stuff/MovingPlatform"]
+material_override = SubResource("StandardMaterial3D_35mwy")
+mesh = SubResource("BoxMesh_m42xo")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/MovingPlatform"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_j07rq")
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j07rq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157536, 0.6370594, 0.6169419, -0.20852631, 0.7588805, -2.025084, 9.244978, 4.147494)
+shadow_enabled = true
+
+[node name="Character" parent="." instance=ExtResource("2_n50sd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41834414, 0, 1.0754826)
