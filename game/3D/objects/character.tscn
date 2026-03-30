@@ -14,7 +14,7 @@ uv1_triplanar = true
 
 [node name="Character" type="CharacterBody3D"]
 script = ExtResource("1_o8xx4")
-gravity = 10.0
+gravity = 15.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

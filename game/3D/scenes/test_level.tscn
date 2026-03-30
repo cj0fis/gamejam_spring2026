@@ -1,8 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bk4hnqem1pmow"]
+[gd_scene load_steps=21 format=3 uid="uid://bk4hnqem1pmow"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_gpssq"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_arass"]
-[ext_resource type="Script" uid="uid://bqjdebhk2idbo" path="res://game/3D/scenes/failing_object.gd" id="2_ksi72"]
+[ext_resource type="Script" uid="uid://bqjdebhk2idbo" path="res://game/3D/scenes/movingobject.gd" id="2_ksi72"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="2_n50sd"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="3_j07rq"]
 
@@ -26,39 +26,50 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_m42xo"]
 size = Vector3(2.5, 0.25, 2.5)
 
-[sub_resource type="Animation" id="Animation_arass"]
-resource_name = "failingceiling"
-length = 0.3
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("level stuff/FallingObject:position:y")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 1),
-"points": PackedFloat32Array(4.7, -0.15, 0, 0.2, -4.2, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3)
-}
-
 [sub_resource type="Animation" id="Animation_ksi72"]
 length = 0.001
-tracks/0/type = "bezier"
+tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("level stuff/FallingObject:position:y")
+tracks/0/path = NodePath("level stuff/MovingPlatform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
-"times": PackedFloat32Array(0)
-}
+tracks/0/keys = PackedFloat32Array(0, 1, 4, 5, -9.3)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("level stuff/FallingPlatform")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -5.548)
+
+[sub_resource type="Animation" id="Animation_j07rq"]
+resource_name = "movingplatform"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/MovingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
+
+[sub_resource type="Animation" id="Animation_e7oam"]
+resource_name = "fallingobject"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/FallingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 5, -5.548, 0.8, 1, 0, 0, -5.548)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j07rq"]
 _data = {
 &"RESET": SubResource("Animation_ksi72"),
-&"failingceiling": SubResource("Animation_arass")
+&"fallingobject": SubResource("Animation_e7oam"),
+&"movingplatform": SubResource("Animation_j07rq")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ksi72"]
@@ -93,23 +104,25 @@ shape = SubResource("BoxShape3D_arass")
 material_override = SubResource("StandardMaterial3D_ksi72")
 mesh = SubResource("BoxMesh_j07rq")
 
-[node name="FallingObject" type="AnimatableBody3D" parent="level stuff"]
+[node name="FallingPlatform" type="AnimatableBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.548)
 script = ExtResource("2_ksi72")
+animationName = "fallingobject"
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/FallingObject"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/FallingPlatform"]
 shape = SubResource("BoxShape3D_e7oam")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="level stuff/FallingObject"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level stuff/FallingPlatform"]
 material_override = SubResource("StandardMaterial3D_35mwy")
 mesh = SubResource("BoxMesh_m42xo")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/FallingObject"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/FallingPlatform"]
 root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_j07rq")
 }
+autoplay = "fallingceiling"
 
 [node name="higher ground" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -9.385273)
@@ -122,6 +135,37 @@ shape = SubResource("BoxShape3D_ksi72")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4164805, 0)
 material_override = SubResource("StandardMaterial3D_ksi72")
 mesh = SubResource("BoxMesh_e7oam")
+
+[node name="higher ground2" type="StaticBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.238949, -0.5, -9.385273)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="level stuff/higher ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4138513, 0)
+shape = SubResource("BoxShape3D_ksi72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="level stuff/higher ground2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4164805, 0)
+material_override = SubResource("StandardMaterial3D_ksi72")
+mesh = SubResource("BoxMesh_e7oam")
+
+[node name="MovingPlatform" type="AnimatableBody3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, -9.3)
+script = ExtResource("2_ksi72")
+animationName = "movingplatform"
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/MovingPlatform"]
+shape = SubResource("BoxShape3D_e7oam")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="level stuff/MovingPlatform"]
+material_override = SubResource("StandardMaterial3D_35mwy")
+mesh = SubResource("BoxMesh_m42xo")
+skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/MovingPlatform"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_j07rq")
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j07rq")
