@@ -14,7 +14,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 		
 func _process(delta: float) -> void:
-	vhs_effect.visible = (GlobalTime.num_rewinding > 0)
+	#vhs_effect.visible = (GlobalTime.num_rewinding > 0)
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Input.is_action_just_pressed("pause"):

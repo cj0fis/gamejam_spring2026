@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bliy25sevn8d5"]
+
+[ext_resource type="Script" uid="uid://y2gdqnrv24uk" path="res://game/3D/objects/ChronoAnimatableBody.gd" id="1_55p3s"]
+
+[node name="ChronoAnimatableBody" type="AnimatableBody3D"]
+script = ExtResource("1_55p3s")
