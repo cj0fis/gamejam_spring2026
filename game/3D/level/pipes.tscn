@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1waw5588m6bf"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sbyd4"]
+
+[node name="Pipes" type="Node3D"]
+
+[node name="Pipe_L" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.480124)
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="Pipe_L"]
+transform = Transform3D(5.7394657, 0, 0, 0, -4.3350073e-07, -5.7394657, 0, 9.91734, -2.5088002e-07, -5.837802, 1.4794276, -11.863374)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_L/CSGMesh3D9"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="Pipe_L"]
+transform = Transform3D(5.7394657, 0, 0, 0, -9.91734, 5.017601e-07, 0, -8.670014e-07, -5.739466, -5.837802, 16.102097, -29.86322)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_L/CSGMesh3D11"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_L"]
+transform = Transform3D(5.7394657, 0, 0, 0, -3.2506003, -4.6582937, 0, 4.5161996, -3.3528745, -5.837802, 4.2484646, -25.498253)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_L/CSGMesh3D10"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="Pipe_R" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11.720083, 0, 6.738063)
+
+[node name="CSGMesh3D9" type="CSGMesh3D" parent="Pipe_R"]
+transform = Transform3D(5.7394657, 0, 0, 0, -4.3350073e-07, -5.7394657, 0, 9.91734, -2.5088002e-07, -5.837802, 1.4794276, -11.863374)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_R/CSGMesh3D9"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D11" type="CSGMesh3D" parent="Pipe_R"]
+transform = Transform3D(5.7394657, 0, 0, 0, -9.91734, 5.017601e-07, 0, -8.670014e-07, -5.739466, -5.837802, 16.102097, -29.86322)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_R/CSGMesh3D11"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_R"]
+transform = Transform3D(5.7394657, 0, 0, 0, -3.2506003, -4.6582937, 0, 4.5161996, -3.3528745, -5.837802, 4.2484646, -25.498253)
+mesh = SubResource("CylinderMesh_sbyd4")
+
+[node name="CSGMesh3D10" type="CSGMesh3D" parent="Pipe_R/CSGMesh3D10"]
+transform = Transform3D(0.6175956, 0, 0, 0, 1, 0, 0, 0, 0.68954754, 0, 0.12117159, 0)
+operation = 2
+mesh = SubResource("CylinderMesh_sbyd4")
