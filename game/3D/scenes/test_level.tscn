@@ -207,7 +207,7 @@ transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157
 shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_n50sd")]
-transform = Transform3D(0.35538438, 0, 0.9347204, 0, 1, 0, -0.9347204, 0, 0.35538438, 15.599674, 1.7873552, 50.67756)
+transform = Transform3D(0.35538438, 0, 0.9347204, 0, 1, 0, -0.9347204, 0, 0.35538438, 15.599674, 1.7873552, 21.136646)
 air_acceleration = 15.0
 air_friction = 5.0
 max_air_speed = 25.0
