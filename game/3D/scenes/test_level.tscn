@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bk4hnqem1pmow"]
+[gd_scene load_steps=25 format=3 uid="uid://bk4hnqem1pmow"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_gpssq"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_arass"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="4_e7oam"]
 [ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/3D/scenes/RewindableAnimationPlayer.gd" id="4_m42xo"]
 [ext_resource type="PackedScene" uid="uid://ben4r8lahoetp" path="res://game/3D/level/hallway_connector.tscn" id="7_35mwy"]
+[ext_resource type="PackedScene" uid="uid://diso1fkxclcnv" path="res://game/3D/level/room_1.tscn" id="7_m42xo"]
 [ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="8_35mwy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_arass"]
@@ -46,17 +47,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -5.548)
 
-[sub_resource type="Animation" id="Animation_j07rq"]
-resource_name = "movingplatform"
-length = 1.5
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("level stuff/MovingPlatform")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
-
 [sub_resource type="Animation" id="Animation_e7oam"]
 resource_name = "fallingobject"
 length = 1.5
@@ -67,6 +57,17 @@ tracks/0/path = NodePath("level stuff/FallingPlatform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 5, -5.548, 0.8, 1, 0, 0, -5.548)
+
+[sub_resource type="Animation" id="Animation_j07rq"]
+resource_name = "movingplatform"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/MovingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j07rq"]
 _data = {
@@ -195,6 +196,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0274086, 2.4896784, 0.8638
 [node name="Door2" parent="level stuff/grayboxing" instance=ExtResource("8_35mwy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8503933, 2.5239701, 20.093416)
 
+[node name="Room1" parent="level stuff/grayboxing" instance=ExtResource("7_m42xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.843236, 2.4912457, 20.123034)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j07rq")
 
@@ -203,4 +207,8 @@ transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157
 shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_n50sd")]
-transform = Transform3D(0.35538438, 0, 0.9347204, 0, 1, 0, -0.9347204, 0, 0.35538438, 15.599674, 1.7873552, 22.34404)
+transform = Transform3D(0.35538438, 0, 0.9347204, 0, 1, 0, -0.9347204, 0, 0.35538438, 15.599674, 1.7873552, 50.67756)
+air_acceleration = 15.0
+air_friction = 5.0
+max_air_speed = 25.0
+air_control = 1.0
