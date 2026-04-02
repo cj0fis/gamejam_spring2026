@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://olotymrwjl75"]
+
+[ext_resource type="Texture2D" uid="uid://bcs36rw4tjhy1" path="res://assets/test_textures/White.png" id="1_0hkdy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ybi0"]
+albedo_texture = ExtResource("1_0hkdy")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="ShipHallway" type="Node3D"]
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, 2.1213202, -2.1213202, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(0, -0.99999994, 0, 0.99999994, 0, 0, 0, 0, 1, 2.9999998, 0, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.70710665, -0.70710665, 0, 0.70710665, -0.70710665, 0, 0, 0, 1, 2.12132, 2.12132, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.9999997, 0, 0, 0, -0.9999997, 0, 0, 0, 1, 0, 2.999999, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.7071065, 0.7071065, 0, -0.7071065, -0.7071065, 0, 0, 0, 1, -2.1213193, 2.1213193, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(0, 0.9999995, 0, -0.9999995, 0, 0, 0, 0, 1, -2.9999986, 0, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(0.7071064, 0.7071064, 0, -0.7071064, 0.7071064, 0, 0, 0, 1, -2.1213193, -2.1213193, 0)
+material_override = SubResource("StandardMaterial3D_8ybi0")
+size = Vector3(2.9, 1, 6)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://bk4hnqem1pmow"]
+[gd_scene load_steps=24 format=3 uid="uid://bk4hnqem1pmow"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_gpssq"]
 [ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_arass"]
-[ext_resource type="Script" uid="uid://bqjdebhk2idbo" path="res://game/3D/scenes/movingobject.gd" id="2_ksi72"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="2_n50sd"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="3_j07rq"]
+[ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="4_e7oam"]
+[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/3D/scenes/RewindableAnimationPlayer.gd" id="4_m42xo"]
+[ext_resource type="PackedScene" uid="uid://ben4r8lahoetp" path="res://game/3D/level/hallway_connector.tscn" id="7_35mwy"]
+[ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="8_35mwy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_arass"]
 size = Vector3(50, 1, 50)
@@ -106,8 +109,6 @@ mesh = SubResource("BoxMesh_j07rq")
 
 [node name="FallingPlatform" type="AnimatableBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.548)
-script = ExtResource("2_ksi72")
-animationName = "fallingobject"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/FallingPlatform"]
 shape = SubResource("BoxShape3D_e7oam")
@@ -123,6 +124,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_j07rq")
 }
 autoplay = "fallingceiling"
+script = ExtResource("4_m42xo")
+track_name = "fallingobject"
+metadata/_custom_type_script = "uid://cv0cmjmilsp6"
 
 [node name="higher ground" type="StaticBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -9.385273)
@@ -150,8 +154,6 @@ mesh = SubResource("BoxMesh_e7oam")
 
 [node name="MovingPlatform" type="AnimatableBody3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, -9.3)
-script = ExtResource("2_ksi72")
-animationName = "movingplatform"
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="level stuff/MovingPlatform"]
 shape = SubResource("BoxShape3D_e7oam")
@@ -161,11 +163,37 @@ material_override = SubResource("StandardMaterial3D_35mwy")
 mesh = SubResource("BoxMesh_m42xo")
 skeleton = NodePath("")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="level stuff/MovingPlatform"]
+[node name="RewindableAnimationPlayer" type="AnimationPlayer" parent="level stuff/MovingPlatform"]
 root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_j07rq")
 }
+script = ExtResource("4_m42xo")
+track_name = "movingplatform"
+
+[node name="grayboxing" type="Node3D" parent="level stuff"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 24)
+
+[node name="ShipHallway" parent="level stuff/grayboxing" instance=ExtResource("4_e7oam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5762787e-07, 2.5, 4.000001)
+
+[node name="ShipHallway2" parent="level stuff/grayboxing" instance=ExtResource("4_e7oam")]
+transform = Transform3D(0.9132257, 0, -0.407454, 0, 1, 0, 0.407454, 0, 0.9132257, -1.4076246, 2.5, 10.42409)
+
+[node name="HallwayConnector" parent="level stuff/grayboxing" instance=ExtResource("7_35mwy")]
+transform = Transform3D(0.96664035, 0, -1.1179876, 0, 1, 0, 0.25613755, 0, 4.219186, -0.23579824, 2.5, 7.42871)
+
+[node name="HallwayConnector2" parent="level stuff/grayboxing" instance=ExtResource("7_35mwy")]
+transform = Transform3D(0.98486835, 0, -0.75643814, 0, 1, 0, 0.17330441, 0, 4.2987475, -2.657886, 2.5, 13.70626)
+
+[node name="ShipHallway4" parent="level stuff/grayboxing" instance=ExtResource("4_e7oam")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8343892, 2.5, 17.207972)
+
+[node name="Door" parent="level stuff/grayboxing" instance=ExtResource("8_35mwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0274086, 2.4896784, 0.86389923)
+
+[node name="Door2" parent="level stuff/grayboxing" instance=ExtResource("8_35mwy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8503933, 2.5239701, 20.093416)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j07rq")
@@ -175,4 +203,4 @@ transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157
 shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_n50sd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.41834414, 0, 1.0754826)
+transform = Transform3D(0.35538438, 0, 0.9347204, 0, 1, 0, -0.9347204, 0, 0.35538438, 15.599674, 1.7873552, 22.34404)
