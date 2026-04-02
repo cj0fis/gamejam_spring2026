@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://87pha20f2fji"]
+
+[ext_resource type="Script" uid="uid://ptvblxb042u6" path="res://game/UI/main_menu.gd" id="1_duh5y"]
+[ext_resource type="Texture2D" uid="uid://cfrrtgo47sx4u" path="res://assets/textures/space1.webp" id="1_y0xsx"]
+[ext_resource type="Texture2D" uid="uid://cnvf2d7yj32ru" path="res://assets/textures/panther1.png" id="2_xjdrg"]
+[ext_resource type="PackedScene" uid="uid://d25to1rqgii3r" path="res://game/UI/clickable_box.tscn" id="3_xjdrg"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_duh5y")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="space" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y0xsx")
+
+[node name="panther" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = -90.0
+offset_top = -19.999996
+offset_right = 270.0
+offset_bottom = 340.0
+scale = Vector2(2.5352023, 3.0438673)
+texture = ExtResource("2_xjdrg")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Panel/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Panel/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.815532, -0.21587123, 0.5369424, 1.4901161e-08, 0.92782325, 0.37302017, -0.57871187, -0.3042099, 0.7566695, -0.048541203, 1.2907896, 2.3577573)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Panel/SubViewportContainer/SubViewport/Camera3D"]
+
+[node name="LevelSelectButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
+transform = Transform3D(0.31091654, -0.2934134, -0.14049722, 0.009446214, 0.20240605, -0.40179914, 0.32517946, 0.2746641, 0.14600675, 0.30958587, 0.12101436, -0.3703444)
+text = "Level Select"
+speed = 0.25
+
+[node name="OptionsButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
+transform = Transform3D(0.31116956, -0.29315418, -0.14047824, 0.009300537, 0.20241259, -0.40179923, 0.32494158, 0.27493593, 0.14602472, 0.3912837, 0.9132091, -0.471254)
+text = "Options"
+speed = -1.17
+
+[node name="StartButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
+transform = Transform3D(0.31116956, -0.29315418, -0.14047824, 0.009300537, 0.20241259, -0.40179923, 0.32494158, 0.27493593, 0.14602472, -0.5128043, 1.2278099, 1.1095427)
+text = "start"
+speed = 3.735
+
+[node name="CreditsButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
+transform = Transform3D(0.42718995, 0.016571745, -0.14047825, -0.13788834, 0.14847277, -0.40179923, 0.031552672, 0.4244776, 0.14602473, -1.7253, -0.21640202, 0.8650863)
+text = "credits"
+speed = 4.715
+
+[node name="QuitButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
+transform = Transform3D(0.42718995, 0.016571745, -0.14047825, -0.13788834, 0.14847277, -0.40179923, 0.031552672, 0.4244776, 0.14602473, -0.47565097, -0.19487613, 0.8087704)
+text = "quit game"
+speed = -2.96
