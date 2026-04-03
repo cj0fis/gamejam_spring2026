@@ -1,7 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://bk4hnqem1pmow"]
+[gd_scene load_steps=23 format=3 uid="uid://bk4hnqem1pmow"]
 
 [ext_resource type="Texture2D" uid="uid://qfeqtcxagv6q" path="res://assets/test_textures/Black.png" id="1_gpssq"]
-[ext_resource type="Texture2D" uid="uid://ciic2tnx2ab7c" path="res://assets/skyboxes/Sky.png" id="2_arass"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="2_n50sd"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="3_j07rq"]
 [ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="4_e7oam"]
@@ -9,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://ben4r8lahoetp" path="res://game/3D/level/hallway_connector.tscn" id="7_35mwy"]
 [ext_resource type="PackedScene" uid="uid://diso1fkxclcnv" path="res://game/3D/level/room_1.tscn" id="7_m42xo"]
 [ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="8_35mwy"]
+[ext_resource type="Environment" uid="uid://bakto24ggf8gd" path="res://assets/skyboxes/space_environment.tres" id="8_g5301"]
+[ext_resource type="PackedScene" uid="uid://cpr0va5hl23o2" path="res://game/3D/objects/panther.tscn" id="10_g5301"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_arass"]
 size = Vector3(50, 1, 50)
@@ -81,17 +82,6 @@ size = Vector3(5, 7, 5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_e7oam"]
 size = Vector3(5, 7, 5)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ksi72"]
-panorama = ExtResource("2_arass")
-
-[sub_resource type="Sky" id="Sky_enou1"]
-sky_material = SubResource("PanoramaSkyMaterial_ksi72")
-
-[sub_resource type="Environment" id="Environment_j07rq"]
-background_mode = 2
-sky = SubResource("Sky_enou1")
-sky_rotation = Vector3(0, 1.0000737, 0)
 
 [node name="test_level" type="Node3D"]
 
@@ -201,10 +191,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8503933, 2.5239701, 20.093
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.843236, 2.4912457, 20.123034)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_j07rq")
+environment = ExtResource("8_g5301")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157536, 0.6370594, 0.6169419, -0.20852631, 0.7588805, -2.025084, 9.244978, 4.147494)
+visible = false
 shadow_enabled = true
 
 [node name="Character" parent="." instance=ExtResource("2_n50sd")]
@@ -213,3 +204,12 @@ air_acceleration = 15.0
 air_friction = 5.0
 max_air_speed = 25.0
 air_control = 1.0
+
+[node name="Panther" parent="." instance=ExtResource("10_g5301")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.454815, 0.15659142, 10.943348)
+
+[node name="Panther2" parent="." instance=ExtResource("10_g5301")]
+transform = Transform3D(0.8608397, 0, 0.50887614, 0, 1, 0, -0.50887614, 0, 0.8608397, 11.704639, 0.15659142, 11.235162)
+
+[node name="Panther3" parent="." instance=ExtResource("10_g5301")]
+transform = Transform3D(0.9948577, 0, 0.101282, 0, 1, 0, -0.101282, 0, 0.9948577, 14.766871, 0.15659142, 9.66036)

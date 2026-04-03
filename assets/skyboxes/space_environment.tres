@@ -1,0 +1,17 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://bakto24ggf8gd"]
+
+[ext_resource type="Texture2D" uid="uid://d0jw1t217pejp" path="res://assets/skyboxes/HDR_refined_galactic_plane_and_nebulae_1.hdr" id="1_jtgv4"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_w2sjw"]
+panorama = ExtResource("1_jtgv4")
+energy_multiplier = 3.0
+
+[sub_resource type="Sky" id="Sky_kjmlk"]
+sky_material = SubResource("PanoramaSkyMaterial_w2sjw")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_kjmlk")
+sky_rotation = Vector3(0, 0, -0.040142573)
+adjustment_enabled = true
+adjustment_saturation = 1.35
