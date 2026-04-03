@@ -1,9 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://87pha20f2fji"]
+[gd_scene load_steps=18 format=3 uid="uid://87pha20f2fji"]
 
 [ext_resource type="Script" uid="uid://ptvblxb042u6" path="res://game/UI/main_menu.gd" id="1_duh5y"]
 [ext_resource type="Texture2D" uid="uid://cfrrtgo47sx4u" path="res://assets/textures/space1.webp" id="1_y0xsx"]
 [ext_resource type="Texture2D" uid="uid://cnvf2d7yj32ru" path="res://assets/textures/panther1.png" id="2_xjdrg"]
 [ext_resource type="PackedScene" uid="uid://d25to1rqgii3r" path="res://game/UI/clickable_box.tscn" id="3_xjdrg"]
+[ext_resource type="Texture2D" uid="uid://bgwf64n3dnwif" path="res://assets/textures/fire_text_timebomb-ezgif.com-gif-to-sprite-converter.png" id="4_leov1"]
+[ext_resource type="Texture2D" uid="uid://dsiuy6f1gsgbf" path="res://assets/textures/tldr_time_panther-ezgif.com-gif-to-sprite-converter.png" id="5_6pmk8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f3lg"]
+atlas = ExtResource("5_6pmk8")
+region = Rect2(0, 0, 376, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ghv6"]
+atlas = ExtResource("5_6pmk8")
+region = Rect2(0, 83, 376, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdwv6"]
+atlas = ExtResource("5_6pmk8")
+region = Rect2(0, 166, 376, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxo64"]
+atlas = ExtResource("5_6pmk8")
+region = Rect2(0, 249, 376, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qut3u"]
+atlas = ExtResource("5_6pmk8")
+region = Rect2(0, 332, 376, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ifq7i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f3lg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ghv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdwv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxo64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qut3u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pmk8"]
+atlas = ExtResource("4_leov1")
+region = Rect2(0, 94, 423, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkh3r"]
+atlas = ExtResource("4_leov1")
+region = Rect2(0, 188, 423, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc8vu"]
+atlas = ExtResource("4_leov1")
+region = Rect2(0, 282, 423, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6a6kh"]
+atlas = ExtResource("4_leov1")
+region = Rect2(0, 376, 423, 94)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3f3lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pmk8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkh3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc8vu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6a6kh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -49,18 +130,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="Panel/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
 physics_object_picking = true
-size = Vector2i(1920, 1080)
+size = Vector2i(960, 540)
+size_2d_override_stretch = true
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="Panel/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.815532, -0.21587123, 0.5369424, 1.4901161e-08, 0.92782325, 0.37302017, -0.57871187, -0.3042099, 0.7566695, -0.048541203, 1.2907896, 2.3577573)
+transform = Transform3D(0.815532, -0.21587123, 0.5369424, 1.4901161e-08, 0.92782325, 0.37302017, -0.57871187, -0.3042099, 0.7566695, 0.7134653, 1.9001894, 3.675663)
+keep_aspect = 0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Panel/SubViewportContainer/SubViewport/Camera3D"]
+light_energy = 5.177
+shadow_enabled = true
 
 [node name="LevelSelectButton" parent="Panel/SubViewportContainer/SubViewport" instance=ExtResource("3_xjdrg")]
 transform = Transform3D(0.31091654, -0.2934134, -0.14049722, 0.009446214, 0.20240605, -0.40179914, 0.32517946, 0.2746641, 0.14600675, 0.30958587, 0.12101436, -0.3703444)
@@ -86,3 +174,23 @@ speed = 4.715
 transform = Transform3D(0.42718995, 0.016571745, -0.14047825, -0.13788834, 0.14847277, -0.40179923, 0.031552672, 0.4244776, 0.14602473, -0.47565097, -0.19487613, 0.8087704)
 text = "quit game"
 speed = -2.96
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Panel/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.69263434, -0.20031425, 0.6929155, 0, 0.9606629, 0.27771708, -0.7212889, -0.1923564, 0.6653881, -1.9200175, 0.403992, 1.1189339)
+sprite_frames = SubResource("SpriteFrames_ifq7i")
+autoplay = "default"
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 1111.0
+offset_top = 552.0
+offset_right = 1151.0
+offset_bottom = 592.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel/TextureRect"]
+position = Vector2(-186, -48.000122)
+scale = Vector2(0.86493856, 1.6156398)
+sprite_frames = SubResource("SpriteFrames_3f3lg")
+autoplay = "default"
+frame_progress = 0.75362796

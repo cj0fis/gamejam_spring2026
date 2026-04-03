@@ -7,7 +7,8 @@ albedo_texture = ExtResource("1_0hkdy")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[node name="ShipHallway" type="Node3D"]
+[node name="ShipHallway" type="CSGCombiner3D"]
+material_override = SubResource("StandardMaterial3D_8ybi0")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)

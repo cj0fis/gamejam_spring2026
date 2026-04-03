@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	if not reversed and not freeze:
 		physics_recorder.add_time(delta)
 		
-		var new_keyframe = PhysicsKeyframe.new(transform, linear_velocity, angular_velocity)
+		var new_keyframe = PhysicsKeyframe.new(global_transform, linear_velocity, angular_velocity)
 		if time_since_save >= 0.1 and new_keyframe.is_different(physics_recorder.current_keyframe):
 			physics_recorder.add_keyframe(new_keyframe)
 			time_since_save = 0.0
@@ -60,7 +60,7 @@ func reverse() -> void:
 	can_sleep = false
 	sleeping = false
 	custom_integrator = true
-	physics_recorder.add_keyframe(PhysicsKeyframe.new(transform, linear_velocity, angular_velocity))
+	physics_recorder.add_keyframe(PhysicsKeyframe.new(global_transform, linear_velocity, angular_velocity))
 	
 func resume() -> void:
 	if not reversed:
@@ -72,7 +72,7 @@ func resume() -> void:
 	custom_integrator = false
 	var kf = physics_recorder.current_keyframe
 	if kf:
-		transform = kf.transform
+		global_transform = kf.transform
 		linear_velocity = kf.velocity
 		angular_velocity = kf.angular_velocity
 	
