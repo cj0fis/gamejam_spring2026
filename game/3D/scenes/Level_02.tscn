@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://cki8cepxgegw5"]
+
+[ext_resource type="Texture2D" uid="uid://d0jw1t217pejp" path="res://assets/skyboxes/HDR_refined_galactic_plane_and_nebulae_1.hdr" id="1_hdcha"]
+[ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="2_88p41"]
+[ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="3_ye1dc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_1d8ru"]
+panorama = ExtResource("1_hdcha")
+energy_multiplier = 3.0
+
+[sub_resource type="Sky" id="Sky_kjmlk"]
+sky_material = SubResource("PanoramaSkyMaterial_1d8ru")
+
+[sub_resource type="Environment" id="Environment_qiasy"]
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_kjmlk")
+sky_rotation = Vector3(0, 0, -0.040142573)
+adjustment_enabled = true
+adjustment_saturation = 1.35
+
+[node name="Level02" type="Node3D"]
+
+[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qiasy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment2"]
+transform = Transform3D(-0.13702968, -0.055087797, 0.989034, -4.656613e-10, 0.9984524, 0.055612393, -0.99056697, 0.007620548, -0.13681762, -4.82898, -0.32095712, 7.1440315)
+visible = false
+
+[node name="ShipHallway" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06803042, 2.5121999, -2.9901993)
+
+[node name="ShipHallway2" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06803042, 2.5121999, -8.940147)
+
+[node name="ShipHallway6" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06803042, 6.849531, -32.82883)
+
+[node name="ShipHallway7" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06803042, 6.849531, -38.778778)
+
+[node name="ShipHallway4" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1.408931, 0, 0, 0, 1, 0.06803042, 2.5121999, -14.952912)
+
+[node name="ShipHallway3" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 1.9444706, 0, 0, 0, 1, 0.06803042, 2.5121999, -20.911129)
+
+[node name="ShipHallway5" parent="." instance=ExtResource("2_88p41")]
+transform = Transform3D(1, 0, 0, 0, 2.7300181, 0, 0, 0, 1, 0.06803042, 2.5121999, -26.750084)
+
+[node name="Character" parent="." instance=ExtResource("3_ye1dc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12813997, 0.78688955, -1.2953663)

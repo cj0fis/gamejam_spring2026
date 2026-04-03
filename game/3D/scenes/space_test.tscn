@@ -92,12 +92,14 @@ material_override = SubResource("StandardMaterial3D_uhm0l")
 mesh = SubResource("PlaneMesh_v7f42")
 
 [node name="Area3D" type="Area3D" parent="black hole"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="black hole/Area3D"]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 shape = SubResource("SphereShape3D_2uslq")
 
 [node name="world stuff" type="Node3D" parent="."]
+visible = false
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="world stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1421494, 0, -1.6976584)

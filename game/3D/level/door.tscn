@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dst6a4iggb60c" path="res://game/3D/level/door.gd" id="1_g8q86"]
 [ext_resource type="Texture2D" uid="uid://bl4w06f5v527" path="res://assets/test_textures/Orange.png" id="2_gasro"]
-[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/3D/scenes/RewindableAnimationPlayer.gd" id="3_gasro"]
+[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/scripts/RewindableAnimationPlayer.gd" id="3_gasro"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k0k5k"]
 albedo_texture = ExtResource("2_gasro")
