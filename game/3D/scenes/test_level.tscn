@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="2_n50sd"]
 [ext_resource type="Texture2D" uid="uid://i7nq0u3l3lpp" path="res://assets/test_textures/Purple.png" id="3_j07rq"]
 [ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="4_e7oam"]
-[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/3D/scenes/RewindableAnimationPlayer.gd" id="4_m42xo"]
+[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/scripts/RewindableAnimationPlayer.gd" id="4_m42xo"]
 [ext_resource type="PackedScene" uid="uid://ben4r8lahoetp" path="res://game/3D/level/hallway_connector.tscn" id="7_35mwy"]
 [ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="8_35mwy"]
 
@@ -46,17 +46,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, -5.548)
 
-[sub_resource type="Animation" id="Animation_j07rq"]
-resource_name = "movingplatform"
-length = 1.5
-tracks/0/type = "position_3d"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("level stuff/MovingPlatform")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
-
 [sub_resource type="Animation" id="Animation_e7oam"]
 resource_name = "fallingobject"
 length = 1.5
@@ -67,6 +56,17 @@ tracks/0/path = NodePath("level stuff/FallingPlatform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0.2, 1, 0, 5, -5.548, 0.8, 1, 0, 0, -5.548)
+
+[sub_resource type="Animation" id="Animation_j07rq"]
+resource_name = "movingplatform"
+length = 1.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level stuff/MovingPlatform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.033333335, 1, 4, 5, -9.3, 1, 1, 12, 5, -9.3)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j07rq"]
 _data = {

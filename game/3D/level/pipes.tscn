@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://b1waw5588m6bf"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_sbyd4"]
+radial_segments = 10
 
 [node name="Pipes" type="Node3D"]
 

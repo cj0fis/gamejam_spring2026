@@ -7,12 +7,12 @@
 panorama = ExtResource("1_2uslq")
 energy_multiplier = 3.0
 
-[sub_resource type="Sky" id="Sky_kjmlk"]
+[sub_resource type="Sky" id="Sky_2uslq"]
 sky_material = SubResource("PanoramaSkyMaterial_w2sjw")
 
 [sub_resource type="Environment" id="Environment_uhm0l"]
 background_mode = 2
-sky = SubResource("Sky_kjmlk")
+sky = SubResource("Sky_2uslq")
 sky_rotation = Vector3(0, 0, -0.040142573)
 adjustment_enabled = true
 adjustment_saturation = 1.35
@@ -90,6 +90,7 @@ visible = false
 
 [node name="black hole" type="MeshInstance3D" parent="."]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 95.014114, -25.449741, 175.68001)
+visible = false
 material_override = SubResource("ShaderMaterial_v7f42")
 cast_shadow = 0
 mesh = SubResource("SphereMesh_b2s83")
@@ -106,12 +107,14 @@ material_override = SubResource("StandardMaterial3D_uhm0l")
 mesh = SubResource("PlaneMesh_v7f42")
 
 [node name="Area3D" type="Area3D" parent="black hole"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="black hole/Area3D"]
 transform = Transform3D(200, 0, 0, 0, 200, 0, 0, 0, 200, 0, 0, 0)
 shape = SubResource("SphereShape3D_2uslq")
 
 [node name="world stuff" type="Node3D" parent="."]
+visible = false
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="world stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1421494, 0, -1.6976584)
