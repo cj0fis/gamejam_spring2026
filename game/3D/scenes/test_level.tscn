@@ -124,7 +124,7 @@ root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_j07rq")
 }
-autoplay = "fallingceiling"
+autoplay = "fallingobject"
 script = ExtResource("4_m42xo")
 track_name = "fallingobject"
 metadata/_custom_type_script = "uid://cv0cmjmilsp6"
@@ -169,6 +169,7 @@ root_node = NodePath("../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_j07rq")
 }
+autoplay = "movingplatform"
 script = ExtResource("4_m42xo")
 track_name = "movingplatform"
 
