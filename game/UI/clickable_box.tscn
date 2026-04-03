@@ -25,3 +25,5 @@ skeleton = NodePath("../..")
 [node name="Label3D" type="Label3D" parent="."]
 billboard = 1
 no_depth_test = true
+font_size = 64
+outline_size = 6

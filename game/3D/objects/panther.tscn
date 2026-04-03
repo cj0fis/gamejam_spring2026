@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpr0va5hl23o2"]
+
+[ext_resource type="Script" uid="uid://va0pv67qidat" path="res://game/3D/objects/Character.gd" id="1_qh7g5"]
+[ext_resource type="Texture2D" uid="uid://o3tcw3p03yj2" path="res://assets/textures/panther2.png" id="2_qh7g5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mkynm"]
+radius = 1.4411237
+
+[node name="Panther" type="CharacterBody3D"]
+script = ExtResource("1_qh7g5")
+metadata/_custom_type_script = "uid://va0pv67qidat"
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.6512043, 0, 0, 0, 0.56799734, 0, 0, 0, 1, 0, 1.4365456, 0)
+billboard = 2
+texture_filter = 0
+texture = ExtResource("2_qh7g5")
+region_rect = Rect2(18.005, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4442785, 0)
+shape = SubResource("SphereShape3D_mkynm")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1034114, 0)
+light_color = Color(1, 0, 0, 1)
+light_energy = 2.271
+shadow_enabled = true
+distance_fade_enabled = true
+omni_range = 18.064426
