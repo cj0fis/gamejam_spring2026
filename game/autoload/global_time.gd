@@ -9,10 +9,10 @@ signal resume_all
 ##			I do not know what is wrong. it seems that for every rewind-resume, about 0.03 seconds are lost.
 
 ##NOTE:		Try messing around with animation_recorder_test. Press P to start the box animation. it should take 2 seconds.
-##			The animation time will vary a little bit normally (I think its just a discrepancy between frame time and event i
+##			The animation time will vary a little bit normally (I think its just a discrepancy between frame time and event 
 ##			interrupt time). Spamming rewind-resume (space or RMB) will cause the finish time to be less than 2 seconds
 ##			before the start time. I am pretty sure the animation is not skipping, so the only other explanation
-##			is that the time is being displayed as less than what it should be.
+##			is that the time is being calculated as less than what it should be.
 
 ##NOTE:		Summing up delta in _process or _physics_process is said to not be reliable for keeping track of the
 ##			total time. I am using the system clock instead, but evidently there is a bug so that might also not be

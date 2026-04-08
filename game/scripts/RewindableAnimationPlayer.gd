@@ -1,16 +1,17 @@
 class_name RewindableAnimationPlayer extends AnimationPlayer
 
-##FIXME: while testing, if time is repeatedly reversed and resumed a lot, the recorded stop time of an 
-##		 animation is earlier than expected. Time is being lost / not accounted for somewhere.
-##		 This is probably some sort of off-by-one error in GlobalTime
+##FIXME: 	while testing, if time is repeatedly reversed and resumed a lot, the recorded stop time of an 
+##		 	animation is earlier than expected. Time is being lost / not accounted for somewhere.
+##		 	This is probably some sort of off-by-one error in GlobalTime
 
-##TODO:	 add functionality for animations that are played while time is reversing,
-##		 or disallow animations from being played while time is reversing
-##		 This might be useful to implement autoplay animations into the queue
+##TODO:	 	add functionality for animations that are played while time is reversing,
+##		 	or disallow animations from being played while time is reversing
+##		 	This might be useful to implement autoplay animations into the queue
 
-##FIXME: there is a bug with animations that are autoplayed. disabling autoplay fixes this
+##FIXME: 	there is a bug with animations that are autoplayed. disabling autoplay fixes this. (I have disabled autoplay
+##			for now)
 
-##TODO: implement autoplay in a way that works
+##TODO: 	implement autoplay in a way that works
 
 
 class AnimationEvent:
