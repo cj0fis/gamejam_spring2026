@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dpksq8j3joj2j" path="res://game/3D/level/room_entrance.tscn" id="1_31q6t"]
 [ext_resource type="Texture2D" uid="uid://bcs36rw4tjhy1" path="res://assets/test_textures/White.png" id="2_kijxp"]
-[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/3D/scenes/RewindableAnimationPlayer.gd" id="3_kijxp"]
+[ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/scripts/RewindableAnimationPlayer.gd" id="3_kijxp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p11yj"]
 albedo_texture = ExtResource("2_kijxp")
@@ -185,6 +185,12 @@ size = Vector3(13, 5, 1)
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -6, 8.940697e-08, 0)
 material_override = SubResource("StandardMaterial3D_p11yj")
 size = Vector3(9, 5, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Exit/RoomEntrance/CSGBox3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1875789e-07, 5.0045977, -7.6714993)
+light_energy = 8.646
+shadow_enabled = true
+omni_range = 35.331963
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Exit/RoomEntrance"]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 2.3841858e-07, 6, 0)

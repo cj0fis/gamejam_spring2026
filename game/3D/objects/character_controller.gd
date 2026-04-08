@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	)
 	character.set_input_direction(input_dir.rotated(Vector3.UP, pivot.global_rotation.y))
 	if Input.is_action_just_pressed("jump"):
-		print(character.jump())
+		character.jump()
 	
 
 	

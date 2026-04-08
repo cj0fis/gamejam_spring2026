@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dij7bedurq2qq"]
+
+[ext_resource type="Script" uid="uid://0fxoof2p3nav" path="res://game/3D/scenes/animation_test_gui.gd" id="1_4u1lr"]
+[ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="1_fw5f6"]
+[ext_resource type="Environment" uid="uid://4jtxxk12643t" path="res://assets/skyboxes/sky_environment.tres" id="2_4u1lr"]
+[ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="3_pwtjg"]
+[ext_resource type="PackedScene" uid="uid://ckbyls4qajuty" path="res://game/3D/objects/test_animation.tscn" id="5_pwtjg"]
+
+[node name="AnimationRecorder test" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+mouse_filter = 2
+script = ExtResource("1_4u1lr")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+process_priority = -1
+process_physics_priority = -1
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "asdfasdf"
+fit_content = true
+tab_size = 8
+
+[node name="Character" parent="." instance=ExtResource("1_fw5f6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2221217, 0, 4.42692)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_4u1lr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.16407731, 0.97715044, 0.13511403, -0.7697152, 0.041157536, 0.6370594, 0.6169419, -0.20852631, 0.7588805, -2.025084, 9.244978, 4.147494)
+shadow_enabled = true
+
+[node name="Door" parent="." instance=ExtResource("3_pwtjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2065756, 1.8077245, -3.421217)
+
+[node name="test animation" parent="." instance=ExtResource("5_pwtjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.187004, 0, -1.2750988)

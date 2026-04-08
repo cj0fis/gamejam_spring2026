@@ -194,3 +194,46 @@ scale = Vector2(0.86493856, 1.6156398)
 sprite_frames = SubResource("SpriteFrames_3f3lg")
 autoplay = "default"
 frame_progress = 0.75362796
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+physics_object_picking = true
+size = Vector2i(960, 540)
+size_2d_override_stretch = true
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(-0.5767588, -0.21587126, 0.78787607, -0.37256038, 0.92782325, -0.01851457, -0.727013, -0.30420992, -0.6155554, 0.89398, 2.2768989, 4.6965103)
+keep_aspect = 0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 1.0000001, 2.9802322e-08, -2.9802322e-08, -1.4901161e-08, 1, 1.1920929e-07, 1.1920929e-07, -0.036616087)
+light_energy = 5.177
+shadow_enabled = true
+
+[node name="Label3D" type="Label3D" parent="SubViewportContainer/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, -2.9802322e-08, 0, 4.89668, 0.5482349, -2.9802322e-08, -3.209915, 0.83632445, 0.24800014, 0, -3.9496162)
+text = "Race against the ticking clock
+ of time to escape the vengeful time
+panthers that you have been experimenting
+on and throwing into black holes and you also
+stole their time machine. Run from them, but 
+also face the depths of time panther devil and 
+time panther God. 
+"
+width = 120.0

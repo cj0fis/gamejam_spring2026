@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ds017wqkbkn8f"]
+[gd_scene load_steps=0 format=3 uid="uid://ds017wqkbkn8f"]
 
 [node name="CubePipe" type="Node3D"]
 

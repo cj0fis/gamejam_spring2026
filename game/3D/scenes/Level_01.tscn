@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://c80g87ugyt2ku"]
+[gd_scene load_steps=16 format=3 uid="uid://bq3slth18krhs"]
 
 [ext_resource type="PackedScene" uid="uid://ds017wqkbkn8f" path="res://game/3D/level/cube_pipe.tscn" id="1_0s8mq"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="1_b1re6"]
 [ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/scripts/RewindableAnimationPlayer.gd" id="1_mrub3"]
-[ext_resource type="Texture2D" uid="uid://d0jw1t217pejp" path="res://assets/skyboxes/HDR_refined_galactic_plane_and_nebulae_1.hdr" id="3_mrub3"]
 [ext_resource type="PackedScene" uid="uid://b1waw5588m6bf" path="res://game/3D/level/pipes.tscn" id="4_0s8mq"]
 [ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="5_glyhk"]
 [ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="7_4c2ve"]
@@ -52,20 +51,6 @@ _data = {
 &"RESET": SubResource("Animation_tjfmr")
 }
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4c2ve"]
-panorama = ExtResource("3_mrub3")
-energy_multiplier = 3.0
-
-[sub_resource type="Sky" id="Sky_mrub3"]
-sky_material = SubResource("PanoramaSkyMaterial_4c2ve")
-
-[sub_resource type="Environment" id="Environment_xobur"]
-background_mode = 2
-sky = SubResource("Sky_mrub3")
-sky_rotation = Vector3(0, 0, -0.040142573)
-adjustment_enabled = true
-adjustment_saturation = 1.35
-
 [sub_resource type="BoxMesh" id="BoxMesh_nc6pg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3cixu"]
@@ -95,13 +80,6 @@ script = ExtResource("1_mrub3")
 
 [node name="Character" parent="." instance=ExtResource("1_b1re6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.922298, 10.122746, -0.017554998)
-
-[node name="WorldEnvironment2" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xobur")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment2"]
-transform = Transform3D(-0.13702968, -0.055087797, 0.989034, -4.656613e-10, 0.9984524, 0.055612393, -0.99056697, 0.007620548, -0.13681762, -4.82898, -0.32095712, 7.1440315)
-visible = false
 
 [node name="StartingPlatform" type="StaticBody3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -72.23268, 4.8656025, -0.50631714)

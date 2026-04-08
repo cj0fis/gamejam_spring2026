@@ -116,7 +116,6 @@ libraries = {
 }
 autoplay = "fallingobject"
 script = ExtResource("4_m42xo")
-track_name = "fallingobject"
 metadata/_custom_type_script = "uid://cv0cmjmilsp6"
 
 [node name="higher ground" type="StaticBody3D" parent="level stuff"]
@@ -161,7 +160,6 @@ libraries = {
 }
 autoplay = "movingplatform"
 script = ExtResource("4_m42xo")
-track_name = "movingplatform"
 
 [node name="grayboxing" type="Node3D" parent="level stuff"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 24)
