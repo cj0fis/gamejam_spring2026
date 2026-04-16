@@ -19,7 +19,8 @@ func _process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		button_hints.visible = true
 		
-	if Input.is_action_just_pressed("mouse_right") or Input.is_action_just_pressed("jump"):
+	#if Input.is_action_just_pressed("mouse_right") or Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("mouse_right"):
 		if not GlobalTime.reversed:
 			GlobalTime.rewind()
 		else:

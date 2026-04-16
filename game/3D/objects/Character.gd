@@ -60,7 +60,7 @@ func _physics_process(delta: float) -> void:
 	handle_state_transitions()
 	
 	# Apply gravity
-	#apply_gravity(delta)
+	apply_gravity(delta)
 	
 	# Apply external forces (decay over time)
 	apply_external_forces(delta)
