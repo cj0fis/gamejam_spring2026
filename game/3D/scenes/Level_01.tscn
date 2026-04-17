@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://bq3slth18krhs"]
+[gd_scene load_steps=18 format=3 uid="uid://bq3slth18krhs"]
 
 [ext_resource type="PackedScene" uid="uid://ds017wqkbkn8f" path="res://game/3D/level/cube_pipe.tscn" id="1_0s8mq"]
 [ext_resource type="PackedScene" uid="uid://bfkp01g3da80l" path="res://game/3D/objects/character.tscn" id="1_b1re6"]
 [ext_resource type="Script" uid="uid://cv0cmjmilsp6" path="res://game/scripts/RewindableAnimationPlayer.gd" id="1_mrub3"]
+[ext_resource type="Script" uid="uid://cfa833wvoc0jo" path="res://game/scripts/level_01.gd" id="1_xobur"]
 [ext_resource type="PackedScene" uid="uid://b1waw5588m6bf" path="res://game/3D/level/pipes.tscn" id="4_0s8mq"]
 [ext_resource type="PackedScene" uid="uid://cvrpp0fsef0wp" path="res://game/3D/level/door.tscn" id="5_glyhk"]
 [ext_resource type="PackedScene" uid="uid://olotymrwjl75" path="res://game/3D/level/hallway.tscn" id="7_4c2ve"]
@@ -60,6 +61,7 @@ _data = {
 [sub_resource type="PlaneMesh" id="PlaneMesh_b1re6"]
 
 [node name="Level01" type="Node3D"]
+script = ExtResource("1_xobur")
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -55.514973, 4.4200335, 0)
@@ -83,7 +85,7 @@ autoplay = "MovingCube_Level01"
 script = ExtResource("1_mrub3")
 
 [node name="Character" parent="." instance=ExtResource("1_b1re6")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.922298, 10.122746, -0.017554998)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21.922, 10.123, 0)
 air_acceleration = 15.0
 air_friction = 5.0
 max_air_speed = 25.0
